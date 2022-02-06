@@ -20,13 +20,13 @@ pipeline {
     EXT_GIT_BRANCH = 'master'
     EXT_USER = 'ciur'
     EXT_REPO = 'papermerge'
-    BUILD_VERSION_ARG = 'PAPERMERGE_RELEASE'
-    LS_USER = 'linuxserver'
-    LS_REPO = 'docker-papermerge'
-    CONTAINER_NAME = 'papermerge'
-    DOCKERHUB_IMAGE = 'linuxserver/papermerge'
-    DEV_DOCKERHUB_IMAGE = 'lsiodev/papermerge'
-    PR_DOCKERHUB_IMAGE = 'lspipepr/papermerge'
+    BUILD_VERSION_ARG = 'aspdocupaper_RELEASE'
+    LS_USER = 'tommyasp'
+    LS_REPO = 'aspdocupaper'
+    CONTAINER_NAME = 'aspdocupaper'
+    DOCKERHUB_IMAGE = 'tommyasp/aspdocupaper'
+    DEV_DOCKERHUB_IMAGE = 'lsiodev/aspdocupaper'
+    PR_DOCKERHUB_IMAGE = 'lspipepr/aspdocupaper'
     DIST_IMAGE = 'ubuntu'
     MULTIARCH='true'
     CI='true'
@@ -164,7 +164,7 @@ pipeline {
         script{
           env.IMAGE = env.DOCKERHUB_IMAGE
           env.GITHUBIMAGE = 'ghcr.io/' + env.LS_USER + '/' + env.CONTAINER_NAME
-          env.GITLABIMAGE = 'registry.gitlab.com/linuxserver.io/' + env.LS_REPO + '/' + env.CONTAINER_NAME
+          env.GITLABIMAGE = 'registry.gitlab.com/tommyasp/' + env.LS_REPO + '/' + env.CONTAINER_NAME
           env.QUAYIMAGE = 'quay.io/linuxserver.io/' + env.CONTAINER_NAME
           if (env.MULTIARCH == 'true') {
             env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER
@@ -187,7 +187,7 @@ pipeline {
         script{
           env.IMAGE = env.DEV_DOCKERHUB_IMAGE
           env.GITHUBIMAGE = 'ghcr.io/' + env.LS_USER + '/lsiodev-' + env.CONTAINER_NAME
-          env.GITLABIMAGE = 'registry.gitlab.com/linuxserver.io/' + env.LS_REPO + '/lsiodev-' + env.CONTAINER_NAME
+          env.GITLABIMAGE = 'registry.gitlab.com/tommyasp/' + env.LS_REPO + '/lsiodev-' + env.CONTAINER_NAME
           env.QUAYIMAGE = 'quay.io/linuxserver.io/lsiodev-' + env.CONTAINER_NAME
           if (env.MULTIARCH == 'true') {
             env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA
@@ -210,7 +210,7 @@ pipeline {
         script{
           env.IMAGE = env.PR_DOCKERHUB_IMAGE
           env.GITHUBIMAGE = 'ghcr.io/' + env.LS_USER + '/lspipepr-' + env.CONTAINER_NAME
-          env.GITLABIMAGE = 'registry.gitlab.com/linuxserver.io/' + env.LS_REPO + '/lspipepr-' + env.CONTAINER_NAME
+          env.GITLABIMAGE = 'registry.gitlab.com/tommyasp/' + env.LS_REPO + '/lspipepr-' + env.CONTAINER_NAME
           env.QUAYIMAGE = 'quay.io/linuxserver.io/lspipepr-' + env.CONTAINER_NAME
           if (env.MULTIARCH == 'true') {
             env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST
@@ -238,7 +238,7 @@ pipeline {
           script{
             env.SHELLCHECK_URL = 'https://ci-tests.linuxserver.io/' + env.IMAGE + '/' + env.META_TAG + '/shellcheck-result.xml'
           }
-          sh '''curl -sL https://raw.githubusercontent.com/linuxserver/docker-shellcheck/master/checkrun.sh | /bin/bash'''
+          sh '''curl -sL https://raw.githubusercontent.com/tommyasp/docker-shellcheck/master/checkrun.sh | /bin/bash'''
           sh '''#! /bin/bash
                 set -e
                 docker pull ghcr.io/linuxserver/lsiodev-spaces-file-upload:latest
@@ -400,7 +400,7 @@ pipeline {
         -d '{"namespace_id":'${GITLAB_NAMESPACE}',\
              "name":"'${LS_REPO}'",
              "mirror":true,\
-             "import_url":"https://github.com/linuxserver/'${LS_REPO}'.git",\
+             "import_url":"https://github.com/tommyasp/'${LS_REPO}'.git",\
              "issues_access_level":"disabled",\
              "merge_requests_access_level":"disabled",\
              "repository_access_level":"enabled",\
@@ -425,12 +425,12 @@ pipeline {
                 curl -sX POST https://scarf.sh/api/v1/organizations/linuxserver-ci/packages \
                   -H "Authorization: Bearer ${SCARF_TOKEN}" \
                   -H "Content-Type: application/json" \
-                  -d '{"name":"linuxserver/papermerge",\
+                  -d '{"name":"tommyasp/aspdocupaper",\
                        "shortDescription":"example description",\
                        "libraryType":"docker",\
-                       "website":"https://github.com/linuxserver/docker-papermerge",\
-                       "backendUrl":"https://ghcr.io/linuxserver/papermerge",\
-                       "publicUrl":"https://lscr.io/linuxserver/papermerge"}' || :
+                       "website":"https://github.com/tommyasp/aspdocupaper",\
+                       "backendUrl":"https://ghcr.io/tommyasp/aspdocupaper",\
+                       "publicUrl":"https://lscr.io/tommyasp/aspdocupaper"}' || :
               else
                 echo "Package already exists on Scarf.sh"
               fi
@@ -452,16 +452,16 @@ pipeline {
         echo "Running on node: ${NODE_NAME}"
         sh "docker build \
           --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
-          --label \"org.opencontainers.image.authors=linuxserver.io\" \
-          --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-papermerge/packages\" \
+          --label \"org.opencontainers.image.authors=tommyasp\" \
+          --label \"org.opencontainers.image.url=https://github.com/tommyasp/aspdocupaper/packages\" \
           --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-papermerge\" \
-          --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-papermerge\" \
+          --label \"org.opencontainers.image.source=https://github.com/tommyasp/aspdocupaper\" \
           --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ls${LS_TAG_NUMBER}\" \
           --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
-          --label \"org.opencontainers.image.vendor=linuxserver.io\" \
+          --label \"org.opencontainers.image.vendor=tommyasp\" \
           --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
           --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-          --label \"org.opencontainers.image.title=Papermerge\" \
+          --label \"org.opencontainers.image.title=aspdocupaper\" \
           --label \"org.opencontainers.image.description=[Papermerge](https://www.papermerge.com/) is an open source document management system (DMS) primarily designed for archiving and retrieving your digital documents. Instead of having piles of paper documents all over your desk, office or drawers - you can quickly scan them and configure your scanner to directly upload to Papermerge DMS.  \" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
