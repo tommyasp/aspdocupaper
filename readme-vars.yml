@@ -1,13 +1,13 @@
 ---
 
 # project information
-project_name: papermerge
+project_name: aspdocupaper
 project_url: "https://www.papermerge.com/"
 project_logo: "https://logo.aspvall.es/logo.png"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is an open source document management system (DMS) primarily designed for archiving and retrieving your digital documents. Instead of having piles of paper documents all over your desk, office or drawers - you can quickly scan them and configure your scanner to directly upload to Papermerge DMS."
 
-project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_lsio_github_repo_url: "https://github.com/ltommyasp/aspdocupaper}"
 
 # supported architectures
 available_architectures:
@@ -21,7 +21,7 @@ param_container_name: "{{ project_name }}"
 param_usage_include_vols: true
 param_volumes:
   - { vol_path: "/config", vol_host_path: "</path/to/appdata/config>", desc: "Contains all relevant configuration files." }
-  - { vol_path: "/data", vol_host_path: "</path/to/appdata/data>", desc: "Storage location for all papermerge data files." }
+  - { vol_path: "/data", vol_host_path: "</path/to/appdata/data>", desc: "Storage location for all aspdocupaper data files." }
 param_usage_include_ports: true
 param_ports:
   - { external_port: "8000", internal_port: "8000", port_desc: "http gui" }
@@ -40,7 +40,7 @@ optional_block_1_items: ""
 app_setup_block_enabled: true
 app_setup_block: |
   Default login is admin:admin via the webui, accessible at http://SERVERIP:PORT
-  More info at [papermerge]({{ project_url }}).
+  More info at [aspdocupaper]({{ project_url }}).
   
   If you need non-English OCR language support, you can use [this mod](https://github.com/linuxserver/docker-mods/tree/papermerge-multilangocr).
 # changelog
