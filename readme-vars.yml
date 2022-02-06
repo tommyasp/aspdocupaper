@@ -3,7 +3,7 @@
 # project information
 project_name: papermerge
 project_url: "https://www.papermerge.com/"
-project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/papermerge-icon.png"
+project_logo: "https://logo.aspvall.es/logo.png"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is an open source document management system (DMS) primarily designed for archiving and retrieving your digital documents. Instead of having piles of paper documents all over your desk, office or drawers - you can quickly scan them and configure your scanner to directly upload to Papermerge DMS."
 
