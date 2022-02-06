@@ -3,9 +3,9 @@ FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG PAPERMERGE_RELEASE
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="aptalca"
+ARG ASPDOCUPAPER_RELEASE
+LABEL build_version="tommyasp version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="tommyasp"
 
 # ensures our console output looks familiar and is not buffered by Docker
 ENV PYTHONUNBUFFERED 1
