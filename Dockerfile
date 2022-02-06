@@ -5,7 +5,7 @@ ARG BUILD_DATE
 ARG VERSION
 ARG PAPERMERGE_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="alex-phillips"
+LABEL maintainer="aptalca"
 
 # ensures our console output looks familiar and is not buffered by Docker
 ENV PYTHONUNBUFFERED 1
